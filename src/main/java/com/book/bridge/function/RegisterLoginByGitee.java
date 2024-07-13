@@ -10,12 +10,10 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Component
-public class RegisterLoginByGitee extends  RegisterLoginFunc implements RegisterLoginFuncInterface {
+public class RegisterLoginByGitee extends RegisterLoginFunc implements RegisterLoginFuncInterface {
     @Value("${gitee.state}")
     private String giteeState;
 
@@ -33,7 +31,7 @@ public class RegisterLoginByGitee extends  RegisterLoginFunc implements Register
 
     @Override
     public String login3rd(HttpServletRequest request) {
-        //入参为HttpServletRequest 这样方法不仅可以为Gitee平台进行功能实现，还能够为其他的第三方平台进行实现
+        //入参为HttpServletRequest 这样方法不仅可以为Gitee账号第三方登录，也可以用于其他第三方账号登录
         String code = request.getParameter("code");
         String state = request.getParameter("state");
         //进行state判断，state值是前端后端商定
@@ -56,16 +54,16 @@ public class RegisterLoginByGitee extends  RegisterLoginFunc implements Register
 
     //自动登录和注册
     private String autoRegister3rdAndLogin(String userName, String password) {
-        //如果第三方账号登录过.直接登录，此时用户名有前缀了，不用担心重复
-        if (checkUserExists(userName)) {
-            return login(userName, password);
+//        //如果第三方账号登录过.直接登录，此时用户名有前缀了，不用担心重复
+        if (super.checkUserExists(userName)) {
+            return super.commonLogin(userName, password,userRepository);
         }
         //如果是第一次登录，则先注册,再登录
         UserInfo userInfo = new UserInfo();
         userInfo.setUserName(userName);
         userInfo.setUserPassword(password);
         userInfo.setCreateDate(new Date());
-        register(userInfo);
-        return login(userName, password);
+        super.commonRegister(userInfo,userRepository);
+        return super.commonLogin(userName, password,userRepository);
     }
 }

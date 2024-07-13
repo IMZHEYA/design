@@ -14,28 +14,16 @@ public class RegisterLoginByDefault extends RegisterLoginFunc implements Registe
 
 
     public String login(String account, String password) {
-        UserInfo userInfo = userRepository.findByUserNameAndUserPassword(account, password);
-        if(userInfo == null){
-            return "account / password error";
-        }
-        return "login success";
+      return super.commonLogin(account,password,userRepository);
     }
 
     public String register(UserInfo userInfo) {
-        if(checkUserExists(userInfo.getUserName())){
-            throw new RuntimeException("user already registered");
-        }
-        userInfo.setCreateDate(new Date());
-        userRepository.save(userInfo);
-        return "register success!";
+
+        return super.commonRegister(userInfo,userRepository);
     }
     //根据用户账号名称检查用户是否已注册
     public boolean checkUserExists(String userName){
-        UserInfo user = userRepository.findByUserName(userName);
-        if(user == null){
-            return false;
-        }
-        return true;
+        return super.commonCheckUserExists(userName,userRepository);
     }
 //瑕疵所在，Default类不需要实现login3rd方法
 //    @Override
