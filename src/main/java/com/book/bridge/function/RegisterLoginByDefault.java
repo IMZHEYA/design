@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 @Component
-public class RegisterLoginByDefault implements RegisterLoginFuncInterface {
+public class RegisterLoginByDefault extends RegisterLoginFunc implements RegisterLoginFuncInterface {
     @Resource
     private UserRepository userRepository;
 
@@ -38,8 +38,8 @@ public class RegisterLoginByDefault implements RegisterLoginFuncInterface {
         return true;
     }
 //瑕疵所在，Default类不需要实现login3rd方法
-    @Override
-    public String login3rd(HttpServletRequest request) {
-        return null;
-    }
+//    @Override
+//    public String login3rd(HttpServletRequest request) {
+//        return null;
+//    }
 }
