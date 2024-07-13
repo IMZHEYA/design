@@ -1,6 +1,7 @@
 package com.book.bridge.function;
 
 import com.alibaba.fastjson.JSONObject;
+import com.book.bridge.abst.factory.RegisterLoginComponentFactory;
 import com.book.pojo.UserInfo;
 import com.book.repo.UserRepository;
 import com.book.utils.HttpClientUtils;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -28,7 +30,10 @@ public class RegisterLoginByGitee extends RegisterLoginFunc implements RegisterL
     @Resource
     private UserRepository userRepository;
 
-
+    @PostConstruct
+    private void initFunMap(){
+        RegisterLoginComponentFactory.funcMap.put("GITEE",this);
+    }
     @Override
     public String login3rd(HttpServletRequest request) {
         //入参为HttpServletRequest 这样方法不仅可以为Gitee账号第三方登录，也可以用于其他第三方账号登录
@@ -55,7 +60,7 @@ public class RegisterLoginByGitee extends RegisterLoginFunc implements RegisterL
     //自动登录和注册
     private String autoRegister3rdAndLogin(String userName, String password) {
 //        //如果第三方账号登录过.直接登录，此时用户名有前缀了，不用担心重复
-        if (super.checkUserExists(userName)) {
+        if (super.commonCheckUserExists(userName,userRepository)) {
             return super.commonLogin(userName, password,userRepository);
         }
         //如果是第一次登录，则先注册,再登录
