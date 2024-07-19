@@ -18,7 +18,7 @@ import org.springframework.statemachine.redis.RedisStateMachinePersister;
 import java.util.EnumSet;
 
 @Configuration
-@EnableStateMachine(name = "OrderStateMachine")
+@EnableStateMachine(name = "orderStateMachine")
 public class OrderStateMachineConfig extends StateMachineConfigurerAdapter<OrderState, OrderStateChangeAction> {
 
     @Autowired
