@@ -1,0 +1,20 @@
+package com.book.utils;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class Constants {
+    public static Map<String, Object> registerLoginFuncMap = new ConcurrentHashMap<>();
+    //appid
+    public static final String APP_ID = "9021000139639522";
+    //应用私钥
+    public static final String APP_PRIVATE_KEY = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCOCn3nexSO2WYGzooJhc2liCpSq4uFUDcNSl4Y2/VPMWS3lCN6LanSZlzw3fCJqfq6o2WARcupSKtLxC6kgeZUufrjQj8OT9kKKjCvKv7r7l1x83zmE15+O25rTSMucF/SvlvzEUwlQbdVY59mDTXlHI2Ec8krgQS0PKr3BfiX/TPhN9omRrljteETSiyG+FtSd8Wfs5Eu7R8p5Ka9nJ20YhvGjqexU+puzi0XIHEsq5pRCTvl8yu+3UlKVa3OZfJYErh8NwzXvf7F+Gk0VHcyUDhAxegOqVgm4krcS69MNFPv48PJMP8jMR1K69X27xCK2yvOQfIn6EpVIcYFmcd1AgMBAAECggEAK+Lv/cqYkn53OJkuKz0NShzlPr/EDv+20sNsiW/EvqA7R0FdKM3dD6YTB1T7kf1T+8CqhtSJ1ZcfXfySkL+WBA2mh/sa8ngXTj205xp4wzrV4nRh3dCUPJpuRncB7MJJyRqJ3HM2vLguRhLO2EAyq8SDsS35NRja9DledY6BvavHOD9Z5LZpegwaAZ6dyC46/qwnnSETcAIxYFencOeH1sx4QXVlPHCVvX7jiCsCvsyZ5oQXQwNSeIBNsaMFd05riTCcXvI1YvTLJWnKu+mE7iIBJ1Atqfkf1uNAYzWzUX1tmlQyEmCb5+qX0ToX2gLs66aP9EQfeOE02W6T8Dj8jQKBgQDBFi6GYTtvGS1zJEGxU4W7nN61i4MAvDfrClA+GM0cC9avSbMr3ER6T3BaKE3J60MYc/zN1Ogj0Y3NXLMjvmvOjpIJ1IBiFGkRH3idHJUSxhtC5aqN8g+EoAAXlRRGFbmMQ3FU69b5JQhoV4zV04IrgCr/Vyc1te78JIlBiSI4qwKBgQC8Ungpwe4fD28hg0J+OaE8IzHYUkgMCoMfFE1Y8n/sr7v+9z38b1PbgfvEgclGDIhR4iGIg3n9K522yv9vknACPRRXOXmzQbrtcgu8ftuC68i/LacKVcLAs7AU4SoNwPuEtXa2vkR9Tpj5+0YbNHHz3T6cNyHEyg8UVEfKMzRAXwKBgQCzNP01Z6Ub9ghC55G5HUXv3Sau5K9PzWEw2r+jAq3LrAkzY3nR6Xv88SHb67BXCe2aEny+JS7Xn7S2t6TkNeYlLhnI2dvWLA9f/w+Y8mBBrnC65CIp4FIay82KFaldauhtkGLtaH57eq2U+j0ScF5ONYSyvJb9uL/4cYiatMZ4RQKBgD9faTx0HFOrd/RJHYkoj4+TMGThW4lhyDofNOAnytC1Wog0X1GhjRCjLzwziK3f7cfQVwR/af++O7aVnVvIZZT7ROsNVlzyU5sv868c6XWnLsjW7g1WStFaJnkARIyYUouYHTjl0lpwpp4I5tCk12v/GeCr1NtKO8TVj8sFbCH1AoGAJU8/DRPT1V0DQlOHpD5EZy81PYj0FqNTcjE/W7xrLcCvbyjxiyC6gUEguRwKw5oQ+APY/DnuWX9Y4ClAnY4TNhLVRMXANjJLykQWhdatio9zHGYefsgZZxAZY4dpyUt1qcOc3gShRt252O0SiRs0KKkqtSsQTQBjius06FVoHX4=";
+    //支付宝公钥
+    public static final String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwQZJHXjNLDXbErx3o/IH0655EVIqqhpRdeQ/boZPKUPtr5WzQgDKFMGlkYDDghlMs0Q/ETNkmkEwfOy+m9CDSwPxem7YPwoA6/RZmZop/wGhQ2IrRz2dkBoR4hIdeddq/44O/O9GmdjyZISRMJy2V5vC/k7aObDyR8xXrEVfN+VQvHFwq6CUUuBnI8hUk9gzDhV9JW4pkAS4ehJQ0KXFDcAQXXHXMreOpxmc2tEFB/ty6I0TrCs1Iufaf/s2HTNM1++S24I7Bj/Jgg6IGWyOomDREbh65m+RyRkbvPLzBx5U+zwgaft9el8rIMmWSOWrid9h0tKv7u85vqG9eVHwuQIDAQAB";
+    //沙箱接口路径
+    public static final String ALIPAY_GATEWAY ="https://openapi-sandbox.dl.alipaydev.com/gateway.do";
+    //签名方式
+    public static final String SIGN_TYPE = "RSA2";
+    //接口回调地址
+    public static final String CALLBACK_URL = "http://localhost:8081/order/alipaycallback";
+}

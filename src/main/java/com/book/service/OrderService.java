@@ -45,7 +45,7 @@ public class OrderService {
     }
 
     //订单支付：有雷
-    public Order payOrder(String orderId) {
+    public Order pay(String orderId) {
         //从Redis中获取订单
         Order order = (Order) redisCommonProcessor.get(orderId);
         //包装订单状态变更Message,并附带订单操作PAY_ORDER
