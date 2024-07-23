@@ -6,6 +6,7 @@ import com.book.ordermanagement.state.OrderState;
 import com.book.ordermanagement.state.OrderStateChangeAction;
 import com.book.pay.facade.PayFacade;
 import com.book.pojo.Order;
+import com.book.service.inter.OrderServiceInterface;
 import com.book.utils.RedisCommonProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
@@ -15,7 +16,7 @@ import org.springframework.statemachine.persist.StateMachinePersister;
 import org.springframework.stereotype.Service;
 
 @Service
-public class OrderService {
+public class OrderService implements OrderServiceInterface {
     //注入状态机
     @Autowired
     private StateMachine<OrderState, OrderStateChangeAction> orderStateMachine;
