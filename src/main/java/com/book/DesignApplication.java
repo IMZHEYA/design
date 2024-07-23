@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@EnableApolloConfig
+//@EnableApolloConfig
 public class DesignApplication {
 
     public static void main(String[] args) {

@@ -32,9 +32,9 @@ public class UserController {
     public String gitee(String code,String state){
         return login3rdAdapter.loginByGitee(code,state);
     }
-
-    @PostMapping("/business/launch")
-    public List<BusinessLaunch> filterBusinessLaunch(@RequestParam("city") String city,@RequestParam("sex") String sex,@RequestParam("product") String product){
-        return userService.filterBusinessLaunch(city,sex,product);
-    }
+//
+//    @PostMapping("/business/launch")
+//    public List<BusinessLaunch> filterBusinessLaunch(@RequestParam("city") String city,@RequestParam("sex") String sex,@RequestParam("product") String product){
+//        return userService.filterBusinessLaunch(city,sex,product);
+//    }
 }
