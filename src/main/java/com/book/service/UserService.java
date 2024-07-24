@@ -7,6 +7,7 @@ import com.book.pojo.BusinessLaunch;
 import com.book.pojo.UserInfo;
 import com.book.repo.BusinessLaunchRepository;
 import com.book.repo.UserRepository;
+import com.book.ticket.proxy.DirectorProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,9 @@ public class UserService {
     private String currentHandlerType;
     //记录当前的责任链头节点，如果配置没有修改，下次直接返回即可
     private AbstractBusinessHandler currentHandler;
+
+    @Autowired
+    private DirectorProxy directorProxy;
 
     public String login(String account, String password) {
         UserInfo userInfo = userRepository.findByUserNameAndUserPassword(account, password);
@@ -105,5 +109,9 @@ public class UserService {
             }
         }
 
+    }
+
+    public Object createTicket(String type, String productId, String content, String title, String bankInfo, String taxId) {
+        return directorProxy.buildTicket(type,productId,content,title,bankInfo,taxId);
     }
 }

@@ -6,6 +6,9 @@ import com.book.pojo.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 @Component
 public class PayFacade {
     //注入工厂类
@@ -18,7 +21,6 @@ public class PayFacade {
         //调用支付方法
         return payContext.execute(order);
     }
-
 
 
 
