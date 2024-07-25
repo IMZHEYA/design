@@ -7,6 +7,10 @@ import com.book.ordermanagement.state.OrderStateChangeAction;
 import com.book.pay.facade.PayFacade;
 import com.book.pojo.Order;
 import com.book.service.inter.OrderServiceInterface;
+import com.book.transaction.colleague.AbstractCustomer;
+import com.book.transaction.colleague.Buyer;
+import com.book.transaction.colleague.Payer;
+import com.book.transaction.mediator.Mediator;
 import com.book.utils.RedisCommonProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
@@ -14,6 +18,8 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.persist.StateMachinePersister;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
 
 @Service
 public class OrderService implements OrderServiceInterface {
@@ -34,6 +40,9 @@ public class OrderService implements OrderServiceInterface {
 
     @Autowired
     private PayFacade payFacade;
+
+    @Autowired
+    private Mediator mediator;
 
     public Order createOrder(String productId) {
         String orderId = "OID" + productId;
@@ -121,5 +130,20 @@ public class OrderService implements OrderServiceInterface {
         Order order = (Order) redisCommonProcessor.get(orderId);
         order.setPrice(price);
         return payFacade.pay(order,payType);
+    }
+
+    public void friendPay(String sourceCustomer, String orderId, String targetCustomer, String payResult, String role) {
+
+        Buyer buyer = new Buyer(orderId,mediator,sourceCustomer);
+        Payer payer = new Payer(orderId,mediator,sourceCustomer);
+        HashMap<String, AbstractCustomer> map = new HashMap<>();
+        map.put("buyer",buyer);
+        map.put("payer",payer);
+        mediator.customerInstance.put(orderId,map);
+        if(role.equals("B")){
+            buyer.messageTransfer(orderId,targetCustomer,payResult);
+        } else if (role.equals("P")) {
+            payer.messageTransfer(orderId,targetCustomer,payResult);
+        }
     }
 }
